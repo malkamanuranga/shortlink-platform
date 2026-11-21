@@ -78,32 +78,6 @@ shortlink-platform/
 └── .github/dependabot.yml     automatic dependency update pull requests
 
 
-## 📄 File guide
-
-| File | What it does | Connected to |
-|---|---|---|
-| `src/app.js` | `createApp()` builds the Express app: `/healthz`, `POST /links`, `GET /:code` | Imported by `server.js` and the tests |
-| `src/server.js` | Starts listening on `PORT` and stops cleanly on SIGTERM and SIGINT | Starts `app.js` |
-| `tests/app.test.js` | Checks the health route, creating and redirecting, rejecting bad URLs and `javascript:` links, and unknown codes | Run by `ci.yml` |
-| `Dockerfile` | Stage 1 installs production packages. Stage 2 copies them into a small image and runs as user `node` | `.dockerignore` limits what is copied |
-| `.dockerignore` | Excludes `node_modules`, `.git`, `.github`, `.env` and logs | The Dockerfile build |
-| `docker-compose.yml` | Runs the image locally with read-only root, `cap_drop: ALL`, `no-new-privileges` and CPU and memory limits | Uses the Dockerfile |
-| `charts/shortlink/Chart.yaml` | Chart name and version | Read by Helm |
-| `charts/shortlink/values.yaml` | Defaults: 2 replicas, image, resources, autoscaling 2 to 10, PDB | Overridden by `values-prod.yaml` |
-| `charts/shortlink/values-prod.yaml` | Production values: 3 replicas, autoscaling 3 to 20, TLS ingress | Used by ArgoCD and Jenkins |
-| `charts/shortlink/templates/_helpers.tpl` | Shared names and labels, so Service and Deployment selectors always match | Used by every template |
-| `charts/shortlink/templates/deployment.yaml` | Pods with probes on `/healthz`, non-root, read-only filesystem, `/tmp` as an emptyDir | Service, HPA, PDB |
-| `charts/shortlink/templates/service.yaml` | Stable address for the pods | Selector from `_helpers.tpl` |
-| `charts/shortlink/templates/hpa.yaml` | Scales between min and max replicas on CPU | Targets the Deployment |
-| `charts/shortlink/templates/pdb.yaml` | Keeps at least one pod running during maintenance | Pods with the same labels |
-| `charts/shortlink/templates/ingress.yaml` | Public host with TLS, only when enabled | Service |
-| `Jenkinsfile` | Parallel lint and test, Trivy scan, push, manual approval, Helm deploy with `--atomic` | Pushes the same GHCR image |
-| `deploy/argocd/application.yaml` | Tells ArgoCD to keep the cluster in sync with `charts/shortlink` on `main` | Reads the chart |
-| `.github/workflows/ci.yml` | Lint, test, build | Runs on every push and pull request |
-| `.github/workflows/security.yml` | Weekly and per-push audit and scan | Blocks on high findings |
-| `.github/workflows/publish.yml` | Build, scan, then push to GHCR | Needs `packages: write` |
-
-**Languages:** JavaScript (Node.js), YAML (GitHub Actions, Helm, ArgoCD), Go templates (Helm), Groovy (Jenkinsfile), Dockerfile syntax.
 
 ## 🚀 Run it locally
 
