@@ -62,20 +62,20 @@ flowchart LR
 
 ## 🧩 Repository structure
 
+```text
 shortlink-platform/
 ├── src/
-│ ├── app.js routes, validation, redirects, metrics-free store
-│ └── server.js starts the server, handles SIGTERM for clean shutdown
-├── tests/app.test.js 5 Jest tests: health, create, redirect, bad input, unknown code
-├── Dockerfile multi-stage build, non-root user, healthcheck
-├── .dockerignore keeps secrets and junk out of the image
-├── docker-compose.yml local run with a read-only filesystem and resource limits
-├── charts/shortlink/ Helm chart: Chart.yaml, values, templates
-├── Jenkinsfile pipeline: lint, test, build, scan, push, approve, deploy
-├── deploy/argocd/ ArgoCD Application
-├── .github/workflows/ ci.yml, security.yml, publish.yml
-└── .github/dependabot.yml automatic dependency update pull requests
-
+│   ├── app.js                 routes, validation, redirects, metrics-free store
+│   └── server.js              starts the server, handles SIGTERM for clean shutdown
+├── tests/app.test.js          5 Jest tests: health, create, redirect, bad input, unknown code
+├── Dockerfile                 multi-stage build, non-root user, healthcheck
+├── .dockerignore              keeps secrets and junk out of the image
+├── docker-compose.yml         local run with a read-only filesystem and resource limits
+├── charts/shortlink/          Helm chart: Chart.yaml, values, templates
+├── Jenkinsfile                pipeline: lint, test, build, scan, push, approve, deploy
+├── deploy/argocd/             ArgoCD Application
+├── .github/workflows/         ci.yml, security.yml, publish.yml
+└── .github/dependabot.yml     automatic dependency update pull requests
 
 ## 📄 File guide
 
