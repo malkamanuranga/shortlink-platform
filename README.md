@@ -77,6 +77,7 @@ shortlink-platform/
 ├── .github/workflows/         ci.yml, security.yml, publish.yml
 └── .github/dependabot.yml     automatic dependency update pull requests
 
+
 ## 📄 File guide
 
 | File | What it does | Connected to |
@@ -127,6 +128,17 @@ curl -i http://localhost:3000/<code-from-above>
 - **Build and scan before publishing:** a failing scan stops the push. See `publish.yml`.
 - **Non-root, read-only containers:** a compromised app has less room to cause damage.
 - **Helm labels from one helper:** a Service selector can't drift from the Deployment labels.
+- **Graceful shutdown:** SIGTERM finishes in-flight requests before the process exits.
+
+## 👤 Author
+
+**Malka Manuranga**, BSc (Hons) Software Engineering, NSBM Green University
+[LinkedIn](https://linkedin.com/in/malka-manuranga) · [GitHub](https://github.com/malkamanuranga)
+'@
+
+git add README.md
+git commit -m "docs: add project readme with pipeline and file guide"
+git push
 - **Graceful shutdown:** SIGTERM finishes in-flight requests before the process exits.
 
 ## 👤 Author
