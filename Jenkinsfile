@@ -1,4 +1,4 @@
-pipeline {
+﻿pipeline {
   agent any
 
   options {
@@ -9,7 +9,7 @@ pipeline {
   }
 
   environment {
-    IMAGE = 'ghcr.io/YOUR_USERNAME/shortlink-platform'
+    IMAGE = 'ghcr.io/malkamanuranga/shortlink-platform'
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'local'}"
   }
 

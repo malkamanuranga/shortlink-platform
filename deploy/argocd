@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+﻿apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: shortlink
@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YOUR_USERNAME/shortlink-platform.git
+    repoURL: https://github.com/malkamanuranga/shortlink-platform.git
     targetRevision: main
     path: charts/shortlink
     helm:
